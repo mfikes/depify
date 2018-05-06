@@ -8,7 +8,7 @@ Creates or updates your deps.edn file, based on your project's project.clj.
 
 #+BEGIN_SRC sh
 
-curl -sq https://raw.githubusercontent.com/hagmonk/depify/master/src/depify/project.clj | clj -
+clj -Sdeps '{:deps {github-mfikes/depify {:git/url "https://github.com/mfikes/depify" :sha "823781f640507c489ed88bc87679216e95ffb3e1"}}}' -m depify.project
 
 #+END_SRC
 
