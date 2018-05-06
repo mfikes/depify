@@ -1,5 +1,7 @@
 (ns depify.project
   (:require
+   [clojure.edn]
+   [clojure.java.io]
    [clojure.pprint :as pprint]
    [clojure.zip :as z]))
 
@@ -75,10 +77,11 @@
     (binding [*out* w]
       (pprint/pprint m))))
 
-(let [proj (get-project-clj "project.clj")]
+(defn -main [& args]
+  (let [proj (get-project-clj "project.clj")]
     (-> "deps.edn"
         get-deps-edn
         (lein-key->deps :repositories proj)
         (lein-key->deps :dependencies proj)
         (lein-key->deps :jvm-opts proj)
-        (pprint-write "deps.edn")))
+        (pprint-write "deps.edn"))))
